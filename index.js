@@ -5,6 +5,7 @@ app.use(express.json())
 const cors = require('cors')
 app.use(cors())
 app.use(morgan(function (tokens, req, res) {
+app.use(express.static('backendserver'))
   return [
     tokens.method(req, res),
     tokens.url(req, res),
