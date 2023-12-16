@@ -82,7 +82,7 @@ app.post('/api/persons', (request, response) => {
         error: 'name must be unique' 
       })
     }
-  
+
     const person = {
       id: getRandomInt(0,100000),
       name: body.name,
@@ -94,7 +94,8 @@ app.post('/api/persons', (request, response) => {
   
     response.json(person)
   })
-const PORT = 3001
+
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
