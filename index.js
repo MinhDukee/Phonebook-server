@@ -73,9 +73,11 @@ app.get('/info', (request, response) => {
   `)
 })
 app.get('/api/persons', (request, response) => {
-  Person.find({}).then(persons => {
-    response.json(persons)
-  })
+  async function dosomething(){
+    const persons = await Person.find({})
+    return persons
+  }
+    response.json(dosomething())
 })
 app.get('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
