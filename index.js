@@ -15,6 +15,32 @@ app.use(express.static('dist'))
     JSON.stringify(req.body)    
   ].join(' ')
 }))
+const mongoose = require('mongoose')
+
+if (process.argv.length<3) {
+  console.log('give password as argument')
+  process.exit(1)
+}
+
+const password = process.argv[2]
+
+const url =
+  `mongodb+srv://MinhDuc:${password}@cluster0.dpqj8dr.mongodb.net/?retryWrites=true&w=majority`
+
+mongoose.set('strictQuery',false)
+
+const connectToDb = async () =>{
+    await mongoose.connect(url);
+   }
+   connectToDb()
+
+const PersonSchema = new mongoose.Schema({
+  name: String,
+  number: String
+})
+
+const Person = mongoose.model('Person', PersonSchema)
+
 let persons = [
     { 
       "id": 1,
@@ -47,7 +73,9 @@ app.get('/info', (request, response) => {
   `)
 })
 app.get('/api/persons', (request, response) => {
-  response.json(persons)
+  Person.find({}).then(persons => {
+    response.json(persons)
+  })
 })
 app.get('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
