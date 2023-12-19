@@ -22,7 +22,7 @@ if (process.argv.length<3) {
   process.exit(1)
 }
 
-const password = process.argv[2]
+const password = "bestbelieveImbejewled"
 
 const url =
   `mongodb+srv://MinhDuc:${password}@cluster0.dpqj8dr.mongodb.net/?retryWrites=true&w=majority`
