@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 mongoose.set('strictQuery', false)
-const password = 'BestbelieveImstillbejeweled'
+const password = 'insert password'
 
 const url =
   `mongodb+srv://MD:${password}@cluster0.dpqj8dr.mongodb.net/?retryWrites=true&w=majority`
