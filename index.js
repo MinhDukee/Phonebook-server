@@ -41,13 +41,11 @@ app.get('/info', (request, response) => {
   <p> ${now} </p>
   `)
 })
-app.get('/api/persons', (request, response) => {
-	async function dosomething(){
-		const persons = await Person.find({})
-		response.json(persons)
-	}
-	dosomething()
-})
+app.get('/api/persons', async (request, response) => {
+	const persons = await Person.find({})
+	response.json(persons)
+}
+)
 app.get('/api/persons/:id', (request, response, next) => {
 
 	Person.findById(request.params.id)
